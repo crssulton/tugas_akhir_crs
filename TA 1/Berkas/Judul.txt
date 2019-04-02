@@ -1,0 +1,3 @@
+Identifikasi tingkat akurasi karakter alfabet pada tulisan tangan sebagai pendeteksi identitas seseorang menggunakan metode GLCM
+
+Identifikasi tingkat akurasi karakter alfabet pada tulisan tangan menggunakan metode GLCM

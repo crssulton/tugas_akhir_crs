@@ -1,0 +1,18 @@
+BAB I Pendahuluan
+	-Latar belakang
+	-Rumusan Masalah
+	-Tujuan
+	-Manfaat
+
+BAB II Tinjauan Pustaka dan Dasar Teori
+	-studi literatur
+
+BAB III Metode Penelitian
+	-alur penelitian
+
+BAB IV Pembahasan
+	-uraian penelitian
+
+BAB V Penutup
+	-Kesimpulan
+	-Saran
