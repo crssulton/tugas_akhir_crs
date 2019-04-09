@@ -372,7 +372,7 @@ end
 % --- Executes on button press in SaveMulti.
 function SaveMulti_Callback(hObject, eventdata, handles)
 global Fitur_GLCM lewati1 lewati2 lewati3
-path = 'D:\DOKUMENTS\TA\TA 2\Code\Hasil Ekstraksi\';
+path = 'G:\CRS\BERKAS\TA\TA 2\Code\Hasil Ekstraksi\';
 nama_versi = strcat(lewati1,lewati2,lewati3);
 nama_file = strcat('hasil_',nama_versi);
 nama_hasil_mat = strcat(path,'mat\',nama_file,'.mat');
@@ -1010,7 +1010,7 @@ Koreksi(jum_total+1,3) = counterPositif + counterNegatif;
 Koreksi(jum_total+1,2) = counterNegatif;
 Koreksi(jum_total+1,1) = counterPositif;
 
-path = 'D:\DOKUMENTS\TA\TA 2\Code\Hasil Klasifikasi\';
+path = 'G:\CRS\BERKAS\TA\TA 2\Code\Hasil Klasifikasi\';
 nama_versi = strcat(ambil1,ambil2,ambil3);
 nama_file = strcat('hasil_',nama_versi);
 nama_hasil_mat = strcat(path,'mat\',nama_file,'.mat');
