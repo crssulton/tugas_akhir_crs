@@ -1,4 +1,4 @@
-function [ fiturGLCM ] = GLCMprocess(image)
+function [ fiturGLCM ] = GLCMprocess(image, jumlahFitur)
 if(min(min(image)) == 0)
     image = image + 1;
 end
@@ -48,33 +48,114 @@ G45simetris = G45 + G45transpose;
 G90simetris = G90 + G90transpose;
 G135simetris = G135 + G135transpose;
 
+    if (jumlahFitur == 5)
+        fiturGLCM(1,1) = energy(G0simetris);
+        fiturGLCM(1,2) = energy(G45simetris);
+        fiturGLCM(1,3) = energy(G90simetris);
+        fiturGLCM(1,4) = energy(G135simetris);
+    end
+    if (jumlahFitur == 9)
+        fiturGLCM(1,1) = energy(G0simetris);
+        fiturGLCM(1,2) = energy(G45simetris);
+        fiturGLCM(1,3) = energy(G90simetris);
+        fiturGLCM(1,4) = energy(G135simetris);
 
-    fiturGLCM(1,1) = energy(G0simetris);
-    fiturGLCM(1,2) = energy(G45simetris);
-    fiturGLCM(1,3) = energy(G90simetris);
-    fiturGLCM(1,4) = energy(G135simetris);
+        fiturGLCM(1,5) = Contras(G0simetris);
+        fiturGLCM(1,6) = Contras(G45simetris);
+        fiturGLCM(1,7) = Contras(G90simetris);
+        fiturGLCM(1,8) = Contras(G135simetris);
+    end
+    if (jumlahFitur == 13)
+        fiturGLCM(1,1) = energy(G0simetris);
+        fiturGLCM(1,2) = energy(G45simetris);
+        fiturGLCM(1,3) = energy(G90simetris);
+        fiturGLCM(1,4) = energy(G135simetris);
 
-    fiturGLCM(1,5) = Contras(G0simetris);
-    fiturGLCM(1,6) = Contras(G45simetris);
-    fiturGLCM(1,7) = Contras(G90simetris);
-    fiturGLCM(1,8) = Contras(G135simetris);
-    
-    fiturGLCM(1,9) = homogenity(G0simetris);
-    fiturGLCM(1,10)= homogenity(G45simetris);
-    fiturGLCM(1,11)= homogenity(G90simetris);
-    fiturGLCM(1,12)= homogenity(G135simetris);
+        fiturGLCM(1,5) = Contras(G0simetris);
+        fiturGLCM(1,6) = Contras(G45simetris);
+        fiturGLCM(1,7) = Contras(G90simetris);
+        fiturGLCM(1,8) = Contras(G135simetris);
 
-    fiturGLCM(1,13)= entropy(G0simetris);
-    fiturGLCM(1,14)= entropy(G45simetris);
-    fiturGLCM(1,15)= entropy(G90simetris);
-    fiturGLCM(1,16)= entropy(G135simetris);
-    
-    fiturGLCM(1,17)= Correlation(G0simetris);
-    fiturGLCM(1,18)= Correlation(G45simetris);
-    fiturGLCM(1,19)= Correlation(G90simetris);
-    fiturGLCM(1,20)= Correlation(G135simetris);
-    
-    [mean st]=Rataan(image);
-    fiturGLCM(1,21)=mean;
-    fiturGLCM(1,22)=st;
+        fiturGLCM(1,9) = homogenity(G0simetris);
+        fiturGLCM(1,10)= homogenity(G45simetris);
+        fiturGLCM(1,11)= homogenity(G90simetris);
+        fiturGLCM(1,12)= homogenity(G135simetris);
+    end
+    if (jumlahFitur == 17)
+        fiturGLCM(1,1) = energy(G0simetris);
+        fiturGLCM(1,2) = energy(G45simetris);
+        fiturGLCM(1,3) = energy(G90simetris);
+        fiturGLCM(1,4) = energy(G135simetris);
+
+        fiturGLCM(1,5) = Contras(G0simetris);
+        fiturGLCM(1,6) = Contras(G45simetris);
+        fiturGLCM(1,7) = Contras(G90simetris);
+        fiturGLCM(1,8) = Contras(G135simetris);
+
+        fiturGLCM(1,9) = homogenity(G0simetris);
+        fiturGLCM(1,10)= homogenity(G45simetris);
+        fiturGLCM(1,11)= homogenity(G90simetris);
+        fiturGLCM(1,12)= homogenity(G135simetris);
+
+        fiturGLCM(1,13)= entropy(G0simetris);
+        fiturGLCM(1,14)= entropy(G45simetris);
+        fiturGLCM(1,15)= entropy(G90simetris);
+        fiturGLCM(1,16)= entropy(G135simetris);
+    end
+    if (jumlahFitur == 21)
+        fiturGLCM(1,1) = energy(G0simetris);
+        fiturGLCM(1,2) = energy(G45simetris);
+        fiturGLCM(1,3) = energy(G90simetris);
+        fiturGLCM(1,4) = energy(G135simetris);
+
+        fiturGLCM(1,5) = Contras(G0simetris);
+        fiturGLCM(1,6) = Contras(G45simetris);
+        fiturGLCM(1,7) = Contras(G90simetris);
+        fiturGLCM(1,8) = Contras(G135simetris);
+
+        fiturGLCM(1,9) = homogenity(G0simetris);
+        fiturGLCM(1,10)= homogenity(G45simetris);
+        fiturGLCM(1,11)= homogenity(G90simetris);
+        fiturGLCM(1,12)= homogenity(G135simetris);
+
+        fiturGLCM(1,13)= entropy(G0simetris);
+        fiturGLCM(1,14)= entropy(G45simetris);
+        fiturGLCM(1,15)= entropy(G90simetris);
+        fiturGLCM(1,16)= entropy(G135simetris);
+
+        fiturGLCM(1,17)= Correlation(G0simetris);
+        fiturGLCM(1,18)= Correlation(G45simetris);
+        fiturGLCM(1,19)= Correlation(G90simetris);
+        fiturGLCM(1,20)= Correlation(G135simetris);
+    end
+    if (jumlahFitur == 23)
+        fiturGLCM(1,1) = energy(G0simetris);
+        fiturGLCM(1,2) = energy(G45simetris);
+        fiturGLCM(1,3) = energy(G90simetris);
+        fiturGLCM(1,4) = energy(G135simetris);
+
+        fiturGLCM(1,5) = Contras(G0simetris);
+        fiturGLCM(1,6) = Contras(G45simetris);
+        fiturGLCM(1,7) = Contras(G90simetris);
+        fiturGLCM(1,8) = Contras(G135simetris);
+
+        fiturGLCM(1,9) = homogenity(G0simetris);
+        fiturGLCM(1,10)= homogenity(G45simetris);
+        fiturGLCM(1,11)= homogenity(G90simetris);
+        fiturGLCM(1,12)= homogenity(G135simetris);
+
+        fiturGLCM(1,13)= entropy(G0simetris);
+        fiturGLCM(1,14)= entropy(G45simetris);
+        fiturGLCM(1,15)= entropy(G90simetris);
+        fiturGLCM(1,16)= entropy(G135simetris);
+
+        fiturGLCM(1,17)= Correlation(G0simetris);
+        fiturGLCM(1,18)= Correlation(G45simetris);
+        fiturGLCM(1,19)= Correlation(G90simetris);
+        fiturGLCM(1,20)= Correlation(G135simetris);
+
+        [mean st]=Rataan(image);
+        fiturGLCM(1,21)=mean;
+        fiturGLCM(1,22)=st;
+    end
 end

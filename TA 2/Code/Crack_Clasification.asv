@@ -207,7 +207,7 @@ jum_positif = str2num(get(handles.JumPositif,'String'));
 jum_negatif = str2num(get(handles.JumNegatif,'String'));
 jum_total = (jum_positif + jum_negatif)*7;
 
-Fitur_GLCM = zeros(jum_total,23);
+Fitur_GLCM = zeros(jum_total,5)
 
 lewati1 = get(handles.Lewat1,'String');
 lewati2 = get(handles.Lewat2,'String');
@@ -253,7 +253,7 @@ for x = 1 : 10
             
             %GLCM
             Fitur_GLCM(counter_positif,:) = GLCMprocess(Z,jumlahFitur+1);
-            Fitur_GLCM(counter_positif,23) = 2;
+            Fitur_GLCM(counter_positif,jumlahFitur+1) = 2;
         end
         
         full_path_negatif=strcat(path_folder_negatif,'\',int2str(x),'\');
@@ -291,7 +291,7 @@ for x = 1 : 10
             
             %GLCM
             Fitur_GLCM(counter_negatif,:) = GLCMprocess(Z, jumlahFitur+1);
-            Fitur_GLCM(counter_negatif,23) = 1;
+            Fitur_GLCM(counter_negatif,jumlahFitur+1) = 1;
         end
         
     end
@@ -373,7 +373,7 @@ end
 function SaveMulti_Callback(hObject, eventdata, handles)
 global Fitur_GLCM lewati1 lewati2 lewati3 
 
-path = get(handles.pathSimpanEkstraksi,'String');
+path = get(handles.pathSimpanEkstraksi,'String')
 nama_versi = strcat(lewati1,lewati2,lewati3);
 nama_file = strcat('hasil_',nama_versi);
 nama_hasil_mat = strcat(path,'mat\',nama_file,'.mat');
@@ -478,7 +478,7 @@ hold on;
 %GLCM
 Fitur_GLCM_test(1,:) = GLCMprocess(Z, jumlahFitur+1);
 Fitur_GLCM_training = Fitur_GLCM(:,1:jumlahFitur);
-Label = Fitur_GLCM(:,23);
+Label = Fitur_GLCM(:,jumlahFitur+1);
 
 %SVM
 svm=MSvm(Fitur_GLCM_training,Label,Fitur_GLCM_test(:,1:jumlahFitur));
@@ -680,7 +680,7 @@ jum_positif = str2num(get(handles.JumPositifTest,'String'));
 jum_negatif = str2num(get(handles.JumNegatifTest,'String'));
 jum_total = (jum_positif + jum_negatif)*3;
 
-Fitur_GLCM_test = zeros(jum_total,23);
+Fitur_GLCM_test = zeros(jum_total,jumlahFitur+1);
 Hasil_SVM = zeros(jum_total,2);
 
 ambil1 = get(handles.Ambil1,'String');
@@ -727,7 +727,7 @@ for x = 1 : 10
             
             %GLCM
             Fitur_GLCM_test(counter_positif,:) = GLCMprocess(Z, jumlahFitur+1);
-            Fitur_GLCM_test(counter_positif,23) = 2;
+            Fitur_GLCM_test(counter_positif,jumlahFitur+1) = 2;
         end
         
         full_path_negatif=strcat(path_folder_negatif,'\',int2str(x),'\');
@@ -765,7 +765,7 @@ for x = 1 : 10
             
             %GLCM
             Fitur_GLCM_test(counter_negatif,:) = GLCMprocess(Z, jumlahFitur+1);
-            Fitur_GLCM_test(counter_negatif,23) = 1;
+            Fitur_GLCM_test(counter_negatif,jumlahFitur+1) = 1;
         end
         
     end
@@ -773,8 +773,8 @@ end
 
 %GLCM
 Fitur_GLCM_training = Fitur_GLCM(:,1:jumlahFitur);
-Label = Fitur_GLCM(:,23);
-Hasil_SVM(:,1) = Fitur_GLCM_test(:,23);
+Label = Fitur_GLCM(:,jumlahFitur+1);
+Hasil_SVM(:,1) = Fitur_GLCM_test(:,jumlahFitur+1);
 %SVM
 for z = 1 : jum_total
     svm=MSvm(Fitur_GLCM_training,Label,Fitur_GLCM_test(z,1:jumlahFitur));
