@@ -212,6 +212,7 @@ Fitur_GLCM = zeros(jum_total,23);
 lewati1 = get(handles.Lewat1,'String');
 lewati2 = get(handles.Lewat2,'String');
 lewati3 = get(handles.Lewat3,'String');
+counter = 0;
 counter_positif = 0;
 counter_negatif = (jum_total/2);
 
@@ -254,6 +255,7 @@ for x = 1 : 10
             %GLCM
             Fitur_GLCM(counter_positif,:) = GLCMprocess(Z,jumlahFitur+1,sudutFitur);
             Fitur_GLCM(counter_positif,23) = 2;
+            counter = counter+1
         end
         
         full_path_negatif=strcat(path_folder_negatif,'\',int2str(x),'\');
@@ -292,6 +294,7 @@ for x = 1 : 10
             %GLCM
             Fitur_GLCM(counter_negatif,:) = GLCMprocess(Z, jumlahFitur+1,sudutFitur);
             Fitur_GLCM(counter_negatif,23) = 1;
+            counter = counter+1
         end
         
     end
@@ -754,6 +757,7 @@ Hasil_SVM = zeros(jum_total,2);
 ambil1 = get(handles.Ambil1,'String');
 ambil2 = get(handles.Ambil2,'String');
 ambil3 = get(handles.Ambil3,'String');
+counter = 0;
 counter_positif = 0;
 counter_negatif = (jum_total/2);
 
@@ -796,6 +800,7 @@ for x = 1 : 10
             %GLCM
             Fitur_GLCM_test(counter_positif,:) = GLCMprocess(Z, jumlahFitur+1,sudutFitur);
             Fitur_GLCM_test(counter_positif,23) = 2;
+            counter = counter+1
         end
         
         full_path_negatif=strcat(path_folder_negatif,'\',int2str(x),'\');
@@ -834,6 +839,7 @@ for x = 1 : 10
             %GLCM
             Fitur_GLCM_test(counter_negatif,:) = GLCMprocess(Z, jumlahFitur+1,sudutFitur);
             Fitur_GLCM_test(counter_negatif,23) = 1;
+            counter = counter+1
         end
         
     end
@@ -854,9 +860,11 @@ if (sudutFitur == 1)
     Fitur_GLCM_training = Tampung(:,1:4);
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
     %SVM
     for z = 1 : jum_total
-        svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
+        svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
+        %svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
         set(handles.StatusMulti,'String',z);
     end
@@ -875,9 +883,11 @@ if (sudutFitur == 2)
     Fitur_GLCM_training = Tampung(:,1:4);
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
     %SVM
     for z = 1 : jum_total
-        svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
+        svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
+        %svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
         set(handles.StatusMulti,'String',z);
     end
@@ -896,9 +906,11 @@ if (sudutFitur == 3)
     Fitur_GLCM_training = Tampung(:,1:4);
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
     %SVM
     for z = 1 : jum_total
-        svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
+        svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
+        %svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
         set(handles.StatusMulti,'String',z);
     end
@@ -917,9 +929,11 @@ if (sudutFitur == 4)
     Fitur_GLCM_training = Tampung(:,1:4);
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
     %SVM
     for z = 1 : jum_total
-        svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
+        svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
+        %svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
         set(handles.StatusMulti,'String',z);
     end
@@ -930,9 +944,11 @@ if (sudutFitur == 5)
     Fitur_GLCM_training = Tampung(:,1:jumlahFitur);
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:jumlahFitur),Label,'kernelcachelimit',28000);
     %SVM
     for z = 1 : jum_total
-        svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:jumlahFitur));
+        svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:jumlahFitur));
+        %svm=MSvm(Fitur_GLCM_training(:,1:jumlahFitur),Label,TampungSementara(z,1:jumlahFitur));
         Hasil_SVM(z,2) = svm;
         set(handles.StatusMulti,'String',z);
     end
