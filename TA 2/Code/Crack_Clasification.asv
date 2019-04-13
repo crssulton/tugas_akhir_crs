@@ -931,10 +931,11 @@ for x = 1 : 10
             
             %GLCM
             Fitur_GLCM_test(counter_negatif,:) = GLCMprocess(Z, jumlahFitur+1,sudutFitur);
+            Fitur_GLCM_test(counter_negatif,23) = 1;
             if (get(handles.statuskelas3,'Value')==1)
-                Fitur_GLCM_test(counter_negatif,23) = 2;
+                Fitur_GLCM_test(counter_positif,23) = 3;
             else
-                Fitur_GLCM_test(counter_negatif,23) = 1;
+                Fitur_GLCM_test(counter_positif,23) = 2;
             end
             counter = counter+1
         end
