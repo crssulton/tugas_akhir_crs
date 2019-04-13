@@ -858,6 +858,7 @@ if (sudutFitur == 1)
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
+        set(handles.StatusMulti,'String',z);
     end
 end
 if (sudutFitur == 2)
@@ -878,6 +879,7 @@ if (sudutFitur == 2)
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
+        set(handles.StatusMulti,'String',z);
     end
 end
 if (sudutFitur == 3)
@@ -898,6 +900,7 @@ if (sudutFitur == 3)
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
+        set(handles.StatusMulti,'String',z);
     end
 end
 if (sudutFitur == 4)
@@ -918,6 +921,7 @@ if (sudutFitur == 4)
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
         Hasil_SVM(z,2) = svm;
+        set(handles.StatusMulti,'String',z);
     end
 end
 if (sudutFitur == 5)
@@ -930,6 +934,7 @@ if (sudutFitur == 5)
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:jumlahFitur));
         Hasil_SVM(z,2) = svm;
+        set(handles.StatusMulti,'String',z);
     end
 end
 
