@@ -489,7 +489,7 @@ if (sudutFitur == 1)
     TampungSementara(:,4) = Fitur_GLCM_test(:,13);
     
     Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
+    Label = Fitur_GLCM_test(:,23);
     %SVM
     svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(:,1:4));
 end
@@ -505,7 +505,7 @@ if (sudutFitur == 2)
     TampungSementara(:,4) = Fitur_GLCM_test(:,14);
     
     Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
+    Label = Fitur_GLCM_test(:,23);
     %SVM
     svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(:,1:4));
 end
@@ -521,7 +521,7 @@ if (sudutFitur == 3)
     TampungSementara(:,4) = Fitur_GLCM_test(:,15);
     
     Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
+    Label = Fitur_GLCM_test(:,23);
     %SVM
     svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(:,1:4));
 end
@@ -537,7 +537,7 @@ if (sudutFitur == 4)
     TampungSementara(:,4) = Fitur_GLCM_test(:,16);
     
     Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
+    Label = Fitur_GLCM_test(:,23);
     %SVM
     svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(:,1:4));
 end
@@ -851,12 +851,12 @@ if (sudutFitur == 1)
     TampungSementara(:,3) = Fitur_GLCM_test(:,9);
     TampungSementara(:,4) = Fitur_GLCM_test(:,13);
     
-    Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
-    Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    Fitur_GLCM_training = Fitur_GLCM(:,1:4);
+    Label = Fitur_GLCM_test(:,23);
+    Hasil_SVM(:,1) = Fitur_GLCM(1:jum_total,23);
     %SVM
     for z = 1 : jum_total
-        svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
+        svm=MSvm(Fitur_GLCM_training,Label,Fitur_GLCM_test(z,1:4));
         Hasil_SVM(z,2) = svm;
     end
 end
@@ -872,8 +872,8 @@ if (sudutFitur == 2)
     TampungSementara(:,4) = Fitur_GLCM_test(:,14);
     
     Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
-    Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    Label = Fitur_GLCM_test(:,23);
+    Hasil_SVM(:,1) = Fitur_GLCM(1:jum_total,23);
     %SVM
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
@@ -892,8 +892,8 @@ if (sudutFitur == 3)
     TampungSementara(:,4) = Fitur_GLCM_test(:,15);
     
     Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
-    Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    Label = Fitur_GLCM_test(:,23);
+    Hasil_SVM(:,1) = Fitur_GLCM(1:jum_total,23);
     %SVM
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
@@ -912,8 +912,8 @@ if (sudutFitur == 4)
     TampungSementara(:,4) = Fitur_GLCM_test(:,16);
     
     Fitur_GLCM_training = Tampung(:,1:4);
-    Label = Fitur_GLCM(:,23);
-    Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    Label = Fitur_GLCM_test(:,23);
+    Hasil_SVM(:,1) = Fitur_GLCM(1:jum_total,23);
     %SVM
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:4));
@@ -924,8 +924,8 @@ if (sudutFitur == 5)
     Tampung(:,:) = Fitur_GLCM(:,:);
     TampungSementara(:,:) = Fitur_GLCM_test(:,:);
     Fitur_GLCM_training = Tampung(:,1:jumlahFitur);
-    Label = Fitur_GLCM(:,23);
-    Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
+    Label = TampungSementara(:,23);
+    Hasil_SVM(:,1) = Fitur_GLCM(1:jum_total,23);
     %SVM
     for z = 1 : jum_total
         svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(z,1:jumlahFitur));
