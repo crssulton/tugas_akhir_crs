@@ -888,9 +888,11 @@ for x = 1 : 10
             
             %GLCM
             Fitur_GLCM_test(counter_positif,:) = GLCMprocess(Z, jumlahFitur+1,sudutFitur);
-            if (get(handles.statuskelas3,'Value')==1)
+            get(handles.statuskelas3tes,'Value')
+            if (get(handles.statuskelas3tes,'Value')==1)
                 Fitur_GLCM_test(counter_positif,23) = 3;
-            else
+            end
+            if (get(handles.statuskelas3tes,'Value')==0)
                 Fitur_GLCM_test(counter_positif,23) = 2;
             end
             counter = counter+1
@@ -931,9 +933,11 @@ for x = 1 : 10
             
             %GLCM
             Fitur_GLCM_test(counter_negatif,:) = GLCMprocess(Z, jumlahFitur+1,sudutFitur);
-            if (get(handles.statuskelas3,'Value')==1)
+            get(handles.statuskelas3tes,'Value')
+            if (get(handles.statuskelas3tes,'Value')==1)
                 Fitur_GLCM_test(counter_negatif,23) = 2;
-            else
+            end
+            if (get(handles.statuskelas3tes,'Value')==0)
                 Fitur_GLCM_test(counter_negatif,23) = 1;
             end
             counter = counter+1
@@ -1298,84 +1302,118 @@ end
 
 % --- Executes on button press in SaveMultiTesting.
 function SaveMultiTesting_Callback(hObject, eventdata, handles)
-global Hasil_SVM  ambil1 ambil2 ambil3 jum_total
-
-counter = 0;
-counterPositif = 0;
-counterNegatif = 0;
+global Hasil_SVM  ambil1 ambil2 ambil3 jum_total jumlahFiturId sudutFiturId
+jumlahKelas = '';
+AA = 0; AB = 0; AC = 0;
+BA = 0; BB = 0; BC = 0;
+CA = 0; CB = 0; CC = 0;
 
 if (get(handles.statuskelas3tes,'Value')==1)
-    counterKelas3 = 0;
-    Koreksi = zeros(jum_total+2,4);
+    jumlahKelas = '3';
+    Koreksi = zeros(jum_total+4,5);
     Koreksi(1:jum_total,1:2) = Hasil_SVM;
     for x = 1 : jum_total
         if (Hasil_SVM(x,1)== Hasil_SVM(x,2))
-            Koreksi(x,3) = 1; 
-            counter = counter + 1;
             if (x <= (jum_total/3))
-                counterPositif = counterPositif + 1;
+                AA = AA + 1;
             elseif ((x > (jum_total/3))&&(x <= (jum_total/3)*2))
-                counterNegatif = counterNegatif + 1;
+                BB = BB + 1;
             else
-                counterKelas3 = counterKelas3 + 1;
+                CC = CC + 1;
             end
-        else
-            Koreksi(x,3) = 0; 
+        elseif (Hasil_SVM(x,1)==3 && Hasil_SVM(x,2)==2)
+            AB = AB + 1;
+        elseif (Hasil_SVM(x,1)==3 && Hasil_SVM(x,2)==1)
+            AC = AC + 1;
+        elseif (Hasil_SVM(x,1)==2 && Hasil_SVM(x,2)==3)
+            BA = BA + 1;
+        elseif (Hasil_SVM(x,1)==2 && Hasil_SVM(x,2)==1)
+            BC = BC + 1;
+        elseif (Hasil_SVM(x,1)==1 && Hasil_SVM(x,2)==3)
+            CA = CA + 1;
+        elseif (Hasil_SVM(x,1)==1 && Hasil_SVM(x,2)==2)
+            CB = CB + 1;
         end
     end
 
-    akurasi = (counter/jum_total)*100;
-    % akurasi                           : Akurasi
-    % jum_total-counter                 : Predikri Salah
-    % counter                           : Prediksi Benar
-    % counterPositif + counterNegatif   : Jumlah Seluruh Data
-    % counterNegatif                    : Jumlah Data Negatif
-    % counterPositif                    : Jumlah Data Positif
+    akurasi_A = (AA/(AA+AB+AC))*100;
+    akurasi_B = (BB/(BA+BB+BC))*100;
+    akurasi_C = (CC/(CA+CB+CC))*100;
+    
+    presisi_A = (AA/(AA+BA+CA))*100;
+    presisi_B = (BB/(AB+BB+CB))*100;
+    presisi_C = (CC/(AC+BC+CC))*100;
+    
+    recall_A = (AA/(AA+AB+AC))*100;
+    recall_B = (BB/(BA+BB+BC))*100;
+    recall_C = (CC/(CA+CB+CC))*100; 
 
-    Koreksi(jum_total+2,4) = akurasi;
-    Koreksi(jum_total+2,2) = jum_total-counter;
-    Koreksi(jum_total+2,1) = counter;
-    Koreksi(jum_total+1,4) = counterPositif + counterNegatif + counterKelas3;
-    Koreksi(jum_total+1,3) = counterKelas3;
-    Koreksi(jum_total+1,2) = counterNegatif;
-    Koreksi(jum_total+1,1) = counterPositif;
+    Koreksi(jum_total+1,1) = AA;
+    Koreksi(jum_total+1,2) = AB;
+    Koreksi(jum_total+1,3) = AC;
+    Koreksi(jum_total+1,4) = recall_A;
+    Koreksi(jum_total+1,5) = presisi_A;
+    Koreksi(jum_total+2,1) = BA;
+    Koreksi(jum_total+2,2) = BB;
+    Koreksi(jum_total+2,3) = BC;
+    Koreksi(jum_total+2,4) = recall_B;
+    Koreksi(jum_total+2,5) = presisi_B;
+    Koreksi(jum_total+3,1) = CA;
+    Koreksi(jum_total+3,2) = CB;
+    Koreksi(jum_total+3,3) = CC;
+    Koreksi(jum_total+3,4) = recall_C;
+    Koreksi(jum_total+3,5) = presisi_C;
+    Koreksi(jum_total+4,1) = akurasi_A;
+    Koreksi(jum_total+4,2) = akurasi_B;
+    Koreksi(jum_total+4,3) = akurasi_C;
+    Koreksi(jum_total+4,4) = 0;
+    Koreksi(jum_total+4,5) = ((AA+BB+CC)/(AA+AB+AC+BA+BB+BC+CA+CB+CC))*100;
 end
-if (get(handles.statuskelas3tes,'Value')==0)
-    Koreksi = zeros(jum_total+2,3);
+if (get(handles.statuskelas3tes,'Value')==0) 
+    jumlahKelas = '2';
+    Koreksi = zeros(jum_total+3,4);
     Koreksi(1:jum_total,1:2) = Hasil_SVM;
     for x = 1 : jum_total
         if (Hasil_SVM(x,1)== Hasil_SVM(x,2))
-            Koreksi(x,3) = 1; 
-            counter = counter + 1;
             if (x <= (jum_total/2))
-                counterPositif = counterPositif + 1;
+                AA = AA + 1;
             else
-                counterNegatif = counterNegatif + 1;
+                BB = BB + 1;
             end
-        else
-            Koreksi(x,3) = 0; 
+        elseif (Hasil_SVM(x,1)==2 && Hasil_SVM(x,2)==1)
+            AB = AB + 1;
+        elseif (Hasil_SVM(x,1)==1 && Hasil_SVM(x,2)==2)
+            BA = BA + 1;
         end
     end
 
-    akurasi = (counter/jum_total)*100;
-    % akurasi                           : Akurasi
-    % jum_total-counter                 : Predikri Salah
-    % counter                           : Prediksi Benar
-    % counterPositif + counterNegatif   : Jumlah Seluruh Data
-    % counterNegatif                    : Jumlah Data Negatif
-    % counterPositif                    : Jumlah Data Positif
+    akurasi_A = (AA/(AA+AB))*100;
+    akurasi_B = (BB/(BA+BB))*100;
+    
+    presisi_A = (AA/(AA+BA))*100;
+    presisi_B = (BB/(AB+BB))*100;
+    
+    recall_A = (AA/(AA+AB))*100;
+    recall_B = (BB/(BA+BB))*100;
 
-    Koreksi(jum_total+2,3) = akurasi;
-    Koreksi(jum_total+2,2) = jum_total-counter;
-    Koreksi(jum_total+2,1) = counter;
-    Koreksi(jum_total+1,3) = counterPositif + counterNegatif;
-    Koreksi(jum_total+1,2) = counterNegatif;
-    Koreksi(jum_total+1,1) = counterPositif;
+    Koreksi(jum_total+1,1) = AA;
+    Koreksi(jum_total+1,2) = AB;
+    Koreksi(jum_total+1,3) = recall_A;
+    Koreksi(jum_total+1,4) = presisi_A;
+    Koreksi(jum_total+2,1) = BA;
+    Koreksi(jum_total+2,2) = BB;
+    Koreksi(jum_total+2,3) = recall_B;
+    Koreksi(jum_total+2,4) = presisi_B;
+    Koreksi(jum_total+3,1) = akurasi_A;
+    Koreksi(jum_total+3,2) = akurasi_B;
+    Koreksi(jum_total+3,3) = 0;
+    Koreksi(jum_total+3,4) = ((AA+BB)/(AA+AB+BA+BB))*100;
 end
 
 path = get(handles.pathSimpanKlasifikasi,'String');
 nama_versi = strcat(ambil1,ambil2,ambil3);
-nama_file = strcat('hasil_',nama_versi);
+nama_kode = strcat('-',jumlahKelas,'_kelas-',int2str(jum_total),'_data-',jumlahFiturId,'-',sudutFiturId);
+nama_file = strcat('hasil model_',nama_versi,nama_kode);
 nama_hasil_mat = strcat(path,'mat\',nama_file,'.mat');
 nama_hasil_xls = strcat(path,'xlsx\',nama_file,'.xlsx');
 save (nama_hasil_mat,'Koreksi');
@@ -1447,25 +1485,31 @@ end
 
 % --- Executes on button press in setJumlahFitur.
 function setJumlahFitur_Callback(hObject, eventdata, handles)
-global jumlahFitur
+global jumlahFitur jumlahFiturId
 
 if (get(handles.jumlahFitur1,'Value')==1)
     jumlahFitur=4;
+    jumlahFiturId='1_fitur';
 end
 if (get(handles.jumlahFitur2,'Value')==1)
     jumlahFitur=8;
+    jumlahFiturId='2_fitur';
 end
 if (get(handles.jumlahFitur3,'Value')==1)
     jumlahFitur=12;
+    jumlahFiturId='3_fitur';
 end
 if (get(handles.jumlahFitur4,'Value')==1)
     jumlahFitur=16;
+    jumlahFiturId='4_fitur';
 end
 if (get(handles.jumlahFitur5,'Value')==1)
     jumlahFitur=20;
+    jumlahFiturId='5_fitur';
 end
 if (get(handles.jumlahFitur6,'Value')==1)
     jumlahFitur=22;
+    jumlahFiturId='semua_fitur';
 end
 
 function pathSimpanEkstraksi_Callback(hObject, eventdata, handles)
@@ -1515,22 +1559,27 @@ end
 
 % --- Executes on button press in setSudut.
 function setSudut_Callback(hObject, eventdata, handles)
-global sudutFitur
+global sudutFitur sudutFiturId
 
 if (get(handles.sudutFitur0,'Value')==1)
     sudutFitur=1;
+    sudutFiturId='0_derajat';
 end
 if (get(handles.sudutFitur45,'Value')==1)
     sudutFitur=2;
+    sudutFiturId='45_derajat';
 end
 if (get(handles.sudutFitur90,'Value')==1)
     sudutFitur=3;
+    sudutFiturId='90_derajat';
 end
 if (get(handles.sudutFitur135,'Value')==1)
     sudutFitur=4;
+    sudutFiturId='145_derajat';
 end
 if (get(handles.sudutFiturAll,'Value')==1)
     sudutFitur=5;
+    sudutFiturId='semua_derajat';
 end
 
 % --- Executes on button press in pushbutton19.
