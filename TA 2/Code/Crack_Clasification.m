@@ -1003,11 +1003,14 @@ if (sudutFitur == 1)
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
     %SVM
+    if(get(handles.statuskelas3tes,'Value')==0)
+        hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+    end
     for z = 1 : jum_total
         if (get(handles.statuskelas3tes,'Value')==1)
             svm=MSvm(Fitur_GLCM_training(:,1:4),Label,TampungSementara(z,1:4));
         else
-            hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+            %hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
             svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
         end
         Hasil_SVM(z,2) = svm;
@@ -1029,11 +1032,14 @@ if (sudutFitur == 2)
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
     %SVM
+    if(get(handles.statuskelas3tes,'Value')==0)
+        hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+    end
     for z = 1 : jum_total
         if (get(handles.statuskelas3tes,'Value')==1)
             svm=MSvm(Fitur_GLCM_training(:,1:4),Label,TampungSementara(z,1:4));
         else
-            hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+            %hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
             svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
         end
         Hasil_SVM(z,2) = svm;
@@ -1055,11 +1061,14 @@ if (sudutFitur == 3)
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
     %SVM
+    if(get(handles.statuskelas3tes,'Value')==0)
+        hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+    end
     for z = 1 : jum_total
         if (get(handles.statuskelas3tes,'Value')==1)
             svm=MSvm(Fitur_GLCM_training(:,1:4),Label,TampungSementara(z,1:4));
         else
-            hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+            %hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
             svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
         end
         Hasil_SVM(z,2) = svm;
@@ -1081,11 +1090,14 @@ if (sudutFitur == 4)
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
     %SVM
+    if(get(handles.statuskelas3tes,'Value')==0)
+        hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+    end
     for z = 1 : jum_total
         if (get(handles.statuskelas3tes,'Value')==1)
             svm=MSvm(Fitur_GLCM_training(:,1:4),Label,TampungSementara(z,1:4));
         else
-            hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
+            %hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:4),Label,'kernelcachelimit',28000);
             svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:4));
         end
         Hasil_SVM(z,2) = svm;
@@ -1099,11 +1111,14 @@ if (sudutFitur == 5)
     Label = Fitur_GLCM(:,23);
     Hasil_SVM(:,1) = Fitur_GLCM_test(1:jum_total,23);
     %SVM
+    if(get(handles.statuskelas3tes,'Value')==0)
+        hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:jumlahFitur),Label,'kernelcachelimit',28000);
+    end
     for z = 1 : jum_total
         if (get(handles.statuskelas3tes,'Value')==1)
             svm=MSvm(Fitur_GLCM_training(:,1:jumlahFitur),Label,TampungSementara(z,1:jumlahFitur));
         else
-            hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:jumlahFitur),Label,'kernelcachelimit',28000);
+            %hasillatihSVM = svmtrain(Fitur_GLCM_training(:,1:jumlahFitur),Label,'kernelcachelimit',28000);
             svm = svmclassify(hasillatihSVM,Fitur_GLCM_test(z,1:jumlahFitur));
         end
         Hasil_SVM(z,2) = svm;
