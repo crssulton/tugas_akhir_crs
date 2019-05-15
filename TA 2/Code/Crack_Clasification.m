@@ -542,6 +542,7 @@ hold on;
 %figure, imshow(Z);
 
 %GLCM
+svm = 0;
 Fitur_GLCM_test(1,:) = GLCMprocess(Z, jumlahFitur+1,sudutFitur); 
 if (sudutFitur == 1)
     Tampung(:,1) = Fitur_GLCM(:,1);
@@ -613,7 +614,8 @@ if (sudutFitur == 5)
     Fitur_GLCM_training = Fitur_GLCM(:,1:jumlahFitur);
     Label = Fitur_GLCM(:,23);
     %SVM
-    svm=MSvm(Fitur_GLCM_training,Label,TampungSementara(:,1:jumlahFitur));
+    hasillatihSVM = svmtrain(Fitur_GLCM_training,Label,'kernelcachelimit',40000);
+    svm = svmclassify(hasillatihSVM,TampungSementara);
 end
 
 status_retakan = 'Tidak ditemukan';
