@@ -23,7 +23,7 @@ clc
 
 % Edit the above text to modify the response to help Crack_Clasification
 
-% Last Modified by GUIDE v2.5 13-Apr-2019 17:07:03
+% Last Modified by GUIDE v2.5 14-May-2019 05:41:19
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -138,7 +138,7 @@ hold on;
 
 function Ekstrak_Callback(hObject, eventdata, handles)
 global Z Fitur_GLCM
-Fitur_GLCM = GLCMprocess(Z);
+Fitur_GLCM = GLCMprocess(Z,23,5);
 set(handles.TabelSigle,'Data',Fitur_GLCM);
 set(handles.ProsesSigle,'String','Selesai');
 
@@ -1719,3 +1719,12 @@ function statuskelas3tes_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of statuskelas3tes
+
+
+% --- Executes on button press in statusLewati.
+function statusLewati_Callback(hObject, eventdata, handles)
+% hObject    handle to statusLewati (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of statusLewati
